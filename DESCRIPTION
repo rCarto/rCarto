@@ -1,0 +1,13 @@
+Package: rCarto
+Type: Package
+Title: This package builds maps with a full cartographic layout.
+Version: 0.9
+Date: 2015-03-24
+Author: Timothee Giraud - UMS RIATE (CNRS)
+Maintainer: timothee giraud <timothee.giraud@ums-riate.fr>
+Description: This package builds maps using shapefiles and dataframes. Five kinds of maps are available : proportionnal circles, proportionnal circles colored by a discretized quantitative variable, proportionnal circles colored by the modalities of a qualitative variable, choropleth and typology.
+Imports: RColorBrewer,
+   maptools,
+   classInt,
+   sp
+License: GPL (>=2.0)
