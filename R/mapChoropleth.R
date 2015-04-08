@@ -27,8 +27,7 @@
 #' @param NACol Color used to draw units with no data (\code{NA}).
 #' @param title Title of the map.
 #' @param legend Title of the legend.
-#' @param author Two lines (\code{author} and \code{sources}) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
-#' @param sources Two lines (\code{author} and \code{sources}) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
+#' @param author	Line (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
 #' @param scalebar \code{FALSE} (default): don't draw a scale bar.\cr
 #' \code{TRUE} : draws a scale bar. The choice of the scale bar location is interactive.
 #' @param scalebarSize Size of the scale bar in map units.
@@ -49,25 +48,14 @@
 #' mtq$POPVAR <- (mtq$P09_POP-mtq$P99_POP) / mtq$P99_POP
 #' mapChoropleth(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"),
 #'               shpId="INSEE_COM",df=mtq,dfId="ID",var="POPVAR")
-#' # detailed example
-#' mtq$POPVAR[3] <- NA
-#' mapChoropleth(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"), 
-#'               shpId="INSEE_COM",df=mtq,dfId="ID",var="POPVAR",
-#'               nclass=6,style="quantile",
-#'               diverg=TRUE,divergBrk=0,
-#'               lgdRnd=2,posLeg="bottomleft",
-#'               palColPos="Greens",palColNeg="Blues",NACol="grey",
-#'               title="Population growth in Martinique",
-#'              legend="Population growth\nrate between\n1999 and 2009",
-#'              author=Sys.getenv("USERNAME"),
-#'               sources="data : INSEE,2009; basemap : IGN, 2012")
 
 mapChoropleth <-
   function (shpFile,shpId,df,dfId,var,
-            nclass=6,style="quantile",fixBrks=FALSE,listBrks=NULL,diverg=FALSE,divergBrk=0,
+            nclass=6,style="quantile",fixBrks=FALSE,listBrks=NULL,diverg=FALSE,
+            divergBrk=0,
             lgdRnd=2,posLeg="bottomleft",
             palCol="Greens",palColPos="Reds",palColNeg="Blues",NACol="grey",
-            title=var,legend=var,author="author",sources="sources",
+            title=var,legend=var,author="author",
             scalebar=FALSE,scalebarSize,scalebarText,
             northArrow=FALSE,northArrowSize,
             txtCex=1){
@@ -85,8 +73,10 @@ mapChoropleth <-
     fdc@data <- data.frame(fdc@data, df[match(fdc@data[,shpId], df[,dfId]),])
     
     # discretization of the variable
-    discretParam<-discretVar(fixBrks=fixBrks,listBrks=listBrks,pt=fdc@data,var=var,nclass=nclass,
-                             style=style,palCol=palCol,diverg=diverg,divergBrk=divergBrk,palColPos=palColPos,
+    discretParam<-discretVar(fixBrks=fixBrks,listBrks=listBrks,pt=fdc@data,
+                             var=var,nclass=nclass,
+                             style=style,palCol=palCol,diverg=diverg,
+                             divergBrk=divergBrk,palColPos=palColPos,
                              palColNeg=palColNeg,NACol=NACol,lgdRnd=lgdRnd)
     
     fdc@data<-discretParam[[1]]

@@ -20,8 +20,7 @@
 #' @param baseCol	Color of the base map.
 #' @param title	Title of the map.
 #' @param legend	Title of the legend.
-#' @param author	Two lines (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
-#' @param sources	Two lines (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
+#' @param author	Line (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.
 #' @param scalebar	FALSE (default): don't draw a scale bar.
 #' TRUE : draws a scale bar. The choice of the scale bar location is interactive.
 #' @param scalebarSize	Size of the scale bar in map units.
@@ -42,15 +41,6 @@
 #' mapCircles(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"),
 #'            shpId="INSEE_COM",df=mtq,dfId="ID",var="P09_POP", )
 #' 
-#' # detailed example
-#' mapCircles(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"),
-#'            shpId="INSEE_COM",df=mtq,dfId="ID",var="P09_POP",
-#'            shareOfCircle=0.1,
-#'            lgdRnd=0,circleCol="Red",
-#'            title="Population distribution in Martinique",
-#'            legend="Total resident\npopulation in 2009",
-#'            author=Sys.getenv("USERNAME"),
-#'            sources="data : INSEE,2009; basemap : IGN, 2012")
 #'            
 mapCircles <-
   function (shpFile,shpId,df,dfId,var,
@@ -58,7 +48,7 @@ mapCircles <-
             valueMax=max(df[,var],na.rm=TRUE),
             lgdRnd=0, posLeg="bottomleft",
             circleCol="#FD8D3C", baseCol="#FFEDA0",
-            title=var, legend=var, author="author", sources="sources",
+            title=var, legend=var, author="author",
             scalebar=FALSE, scalebarSize, scalebarText,
             northArrow=FALSE,northArrowSize,
             txtCex=1){

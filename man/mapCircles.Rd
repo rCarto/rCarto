@@ -8,8 +8,8 @@ mapCircles(shpFile, shpId, df, dfId, var, fixedNorm = FALSE,
   shareOfCircles = 0.02, radiusMax = 0.5, valueMax = max(df[, var], na.rm
   = TRUE), lgdRnd = 0, posLeg = "bottomleft", circleCol = "#FD8D3C",
   baseCol = "#FFEDA0", title = var, legend = var, author = "author",
-  sources = "sources", scalebar = FALSE, scalebarSize, scalebarText,
-  northArrow = FALSE, northArrowSize, txtCex = 1)
+  scalebar = FALSE, scalebarSize, scalebarText, northArrow = FALSE,
+  northArrowSize, txtCex = 1)
 }
 \arguments{
 \item{shpFile}{Path to a polygon shapefile.}
@@ -43,9 +43,7 @@ TRUE : the size of the largest circle is defined by a radius size (radiusMax) an
 
 \item{legend}{Title of the legend.}
 
-\item{author}{Two lines (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.}
-
-\item{sources}{Two lines (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.}
+\item{author}{Line (author and sources) at the bottom of the map are available to display additional information. It is recommended to display the name of the author and the sources of the data and the base map.}
 
 \item{scalebar}{FALSE (default): don't draw a scale bar.
 TRUE : draws a scale bar. The choice of the scale bar location is interactive.}
@@ -78,15 +76,5 @@ data(mtq)
 # minimal example
 mapCircles(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"),
            shpId="INSEE_COM",df=mtq,dfId="ID",var="P09_POP", )
-
-# detailed example
-mapCircles(shpFile=file.path(path.package("rCarto"), "shapes/COMMUNE"),
-           shpId="INSEE_COM",df=mtq,dfId="ID",var="P09_POP",
-           shareOfCircle=0.1,
-           lgdRnd=0,circleCol="Red",
-           title="Population distribution in Martinique",
-           legend="Total resident\\npopulation in 2009",
-           author=Sys.getenv("USERNAME"),
-           sources="data : INSEE,2009; basemap : IGN, 2012")
 }
 
